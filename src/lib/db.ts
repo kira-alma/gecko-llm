@@ -18,7 +18,9 @@ import type {
   ResearchStats,
 } from "./types";
 
-const DB_PATH = path.join(process.cwd(), "data", "geckollm.db");
+// Use RENDER_DISK_PATH if available (persistent disk on Render), otherwise local data/ directory
+const DB_DIR = process.env.RENDER_DISK_PATH || path.join(process.cwd(), "data");
+const DB_PATH = path.join(DB_DIR, "geckollm.db");
 
 let db: Database.Database | null = null;
 
